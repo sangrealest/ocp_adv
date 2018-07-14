@@ -3,8 +3,6 @@
 ### Ansible Vars
 ###########################################################################
 timeout=60
-ansible_become=yes 
-ansible_ssh_user=ec2-user 
 
 ###########################################################################
 ### OpenShift Basic Vars
@@ -40,15 +38,15 @@ openshift_master_console_port=443
 
 openshift_master_cluster_method=native 
 
-openshift_master_cluster_hostname=loadbalancer1.cc1e.internal 
-openshift_master_cluster_public_hostname=loadbalancer.cc1e.example.opentlc.com 
-openshift_master_default_subdomain=apps.cc1e.example.opentlc.com 
+openshift_master_cluster_hostname=loadbalancer1.shanker 
+openshift_master_cluster_public_hostname=loadbalancer.shanker.opentlc.com 
+openshift_master_default_subdomain=apps.shanker.opentlc.com 
 ###########################################################################
 ### OpenShift Network Vars
 ###########################################################################
 
-#osm_cluster_network_cidr=10.1.0.0/16 
-#openshift_portal_net=172.30.0.0/16 
+osm_cluster_network_cidr=10.1.0.0/16 
+openshift_portal_net=172.30.0.0/16 
 
 os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 #os_sdn_network_plugin_name='redhat/openshift-ovs-subnet' 
@@ -99,7 +97,7 @@ openshift_logging_storage_volume_name=logging
 openshift_logging_storage_volume_size=10Gi 
 openshift_logging_storage_labels={'storage': 'logging'} 
 
-openshift_logging_kibana_hostname=kibana.apps.cc1e.example.opentlc.com
+openshift_logging_kibana_hostname=kibana.apps.shanker.opentlc.com
 openshift_logging_es_cluster_size=1
 
 openshift_logging_es_nodeselector={"env":"infra"} 
@@ -177,35 +175,35 @@ nodes
 nfs
 
 [lb]
-loadbalancer1.cc1e.internal
+192.168.122.50 openshift_hostname=loadbalancer1.shanker
 
 [masters]
-master3.cc1e.internal
-master2.cc1e.internal
-master1.cc1e.internal
+192.168.122.42 openshift_hostname=master1.shanker openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'shanker'}"
+192.168.122.43 openshift_hostname=master2.shanker openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'shanker'}"
+192.168.122.44 openshift_hostname=master3.shanker openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'shanker'}"
 
 [etcd]
-master3.cc1e.internal
-master2.cc1e.internal
-master1.cc1e.internal
+192.168.122.42 openshift_hostname=master1.shanker openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'shanker'}"
+192.168.122.43 openshift_hostname=master2.shanker openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'shanker'}"
+192.168.122.44 openshift_hostname=master3.shanker openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'shanker'}"
 
 
 [nodes]
 ## These are the masters
-master3.cc1e.internal openshift_hostname=master3.cc1e.internal openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'cc1e'}"
-master2.cc1e.internal openshift_hostname=master2.cc1e.internal openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'cc1e'}"
-master1.cc1e.internal openshift_hostname=master1.cc1e.internal openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'cc1e'}"
+192.168.122.42 openshift_hostname=master1.shanker openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'shanker'}"
+192.168.122.43 openshift_hostname=master2.shanker openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'shanker'}"
+192.168.122.44 openshift_hostname=master3.shanker openshift_node_labels="{'logging':'true','openshift_schedulable':'False','cluster': 'shanker'}"
 
 ## These are infranodes
-infranode1.cc1e.internal openshift_hostname=infranode1.cc1e.internal  openshift_node_labels="{'logging':'true','cluster': 'cc1e', 'env':'infra'}"
-infranode2.cc1e.internal openshift_hostname=infranode2.cc1e.internal  openshift_node_labels="{'logging':'true','cluster': 'cc1e', 'env':'infra'}"
+192.168.122.45 openshift_hostname=infranode1.shanker openshift_node_labels="{'logging':'true','cluster': 'shanker', 'env':'infra'}"
+192.168.122.46 openshift_hostname=infranode2.shanker openshift_node_labels="{'logging':'true','cluster': 'shanker', 'env':'infra'}"
 
 ## These are regular nodes
-node3.cc1e.internal openshift_hostname=node3.cc1e.internal  openshift_node_labels="{'logging':'true','cluster': 'cc1e', 'env':'app'}"
-node1.cc1e.internal openshift_hostname=node1.cc1e.internal  openshift_node_labels="{'logging':'true','cluster': 'cc1e', 'env':'app'}"
-node2.cc1e.internal openshift_hostname=node2.cc1e.internal  openshift_node_labels="{'logging':'true','cluster': 'cc1e', 'env':'app'}"
+192.168.122.47 openshift_hostname=node1.shanker openshift_node_labels="{'logging':'true','cluster': 'shanker', 'env':'app'}"
+192.168.122.48 openshift_hostname=node2.shanker openshift_node_labels="{'logging':'true','cluster': 'shanker', 'env':'app'}"
+192.168.122.49 openshift_hostname=node3.shanker openshift_node_labels="{'logging':'true','cluster': 'shanker', 'env':'app'}"
 
 
 [nfs]
-support1.cc1e.internal openshift_hostname=support1.cc1e.internal
+192.168.122.1 openshift_hostname=support1.shanker
 

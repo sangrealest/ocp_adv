@@ -1,0 +1,14 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.122.1 support1.shanker
+192.168.122.42 master1.shanker
+192.168.122.43 master2.shanker
+192.168.122.44 master3.shanker
+192.168.122.45 infranode1.shanker
+192.168.122.46 infranode2.shanker
+192.168.122.47 node1.shanker
+192.168.122.48 node2.shanker
+192.168.122.49 node3.shanker
+192.168.122.50 loadbalancer1.shanker
+
+114.108.188.251 cdn.redhat.com
